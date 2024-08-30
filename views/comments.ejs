@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comments - <%= post.title %></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <!-- Navbar -->
+    <%- include('./partials/navbar')%>
+
+      <main class="container">
+          <!-- Post details heading -->
+          <div class="card mb-4">
+              <div class="card-body">
+                  <h1 class="card-title"><%= post.title %></h1>
+                  <p class="card-text"><%= post.content %></p>
+                  <small class="text-muted">Posted on: <%= post.date.toDateString() %></small>
+              </div>
+
+          </div>
+
+          <!-- Comments section -->
+          <div class="card mb-4">
+              <div class="card-body">
+                  <h2 class="card-title">Comments</h2>
+                  <% post.comments.forEach(comment => { %>
+                      <div class="card mb-3">
+                          <div class="card-body">
+                              <p class="card-text"><%= comment.content %></p>
+                              <small class="text-muted">Posted on: <%= comment.date.toLocaleString() %></small>
+                          </div>
+                      </div>
+                  <% }) %>
+              </div>
+          </div>
+
+          <!-- Add a comment form -->
+          <div class="card">
+              <div class="card-body">
+                  <h2 class="card-title">Add a Comment</h2>
+                  <form action="/post/<%= postId %>/comment" method="POST">
+                      <div class="form-group">
+                          <textarea name="comment" class="form-control" placeholder="Add a comment..." required></textarea>
+                      </div>
+                      <button type="submit" class="btn btn-success">Comment</button>
+                  </form>
+              </div>
+          </div>
+      </main>
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+      <script src="/js/main.js"></script>
+  </body>
+  </html>

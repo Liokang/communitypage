@@ -1,0 +1,76 @@
+<!-- views/group.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Group Page</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <%- include('./partials/navbar')%>
+  <!-- Main Content -->
+  <div class="container mt-4">
+    <h2>Group Page</h2>
+
+    <!-- Create Poll Form -->
+    <div class="card mb-4">
+      <div class="card-body">
+        <h5 class="card-title">Create a Poll</h5>
+        <form action="/submit-poll" method="POST">
+          <div class="form-group">
+            <label for="question">Poll Question:</label>
+            <input type="text" id="question" name="question" class="form-control" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Create Poll</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Display Existing Polls -->
+    <% if (polls.length > 0) { %>
+      <% polls.forEach(function(poll) { %>
+        <div class="card mb-4">
+          <div class="card-body">
+            <h5 class="card-title"><%= poll.question %></h5>
+            <form action="/vote-poll" method="POST">
+              <input type="hidden" name="question" value="<%= poll.question %>">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="vote" id="yes-<%= poll.question %>" value="Yes" required>
+                <label class="form-check-label" for="yes-<%= poll.question %>">Yes</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="vote" id="no-<%= poll.question %>" value="No">
+                <label class="form-check-label" for="no-<%= poll.question %>">No</label>
+              </div>
+              <button type="submit" class="btn btn-primary mt-2">Vote</button>
+            </form>
+
+            <!-- Poll Results -->
+            <div class="mt-3">
+              <p><strong>Results:</strong></p>
+              <%
+                const totalVotes = poll.votes.yes + poll.votes.no;
+                const yesPercentage = totalVotes > 0 ? (poll.votes.yes / totalVotes) * 100 : 0;
+                const noPercentage = totalVotes > 0 ? (poll.votes.no / totalVotes) * 100 : 0;
+              %>
+              <p>Yes: <%= yesPercentage.toFixed(2) %> %</p>
+              <p>No: <%= noPercentage.toFixed(2) %> %</p>
+            </div>
+          </div>
+        </div>
+      <% }); %>
+    <% } else { %>
+      <p>No polls available. Be the first to create one!</p>
+    <% } %>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

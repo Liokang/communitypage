@@ -1,0 +1,90 @@
+body {
+    background-image: url('https://cdn.sanity.io/images/87fk8pb2/production/d50a392e010a65be37783d0ec2d57e8ffd018be6-2205x735.png?w=2880');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Fixes the background image in place */
+    min-height: 100vh;
+    color: #000; /* Set the default text color to black */
+}
+
+h1, h2, h3, h4, h5, h6, p, a, li, span, small, label, input, textarea {
+    color: #000; /* Ensure all textual elements are black */
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.8); /* Slight transparency for better readability */
+    color: #000; /* Ensure text inside cards is black */
+}
+
+.navbar-brand, .navbar-nav .nav-link {
+    color: #000 !important; /* Ensure navbar links are black */
+}
+
+.btn {
+    color: #fff; /* Keep button text white for contrast */
+}
+
+
+/* Custom Green Navbar */
+.bg-green {
+    background-color: #28a745; /* Bootstrap's success color, or any green you prefer */
+}
+
+.navbar-brand, .navbar-nav .nav-link {
+    color: #fff !important; /* White text color for brand and nav links */
+}
+
+.navbar-toggler-icon {
+    filter: invert(100%); /* Ensures the toggler icon is visible (white) on a green background */
+}
+
+.navbar-nav .nav-link:hover {
+    color: #d4d4d4 !important; /* Slightly darker white on hover */
+}
+
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+main {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+.post, .activity, .discussion {
+    background-color: white;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+form input, form textarea {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+form button {
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
